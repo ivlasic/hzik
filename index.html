@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HŽI karta</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="Pregledna karta HŽI" />
+		<meta name="keywords" content="HŽ, infrastruktura, karta" />
+		<meta name="author" content="Ivan Vlašić" />
+		<meta name="mobile-web-app-capable" content="yes" />
+
+		<link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+		<link rel="shortcut icon" href="img/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="HŽI karta" />
+		<link rel="manifest" href="img/site.webmanifest" />
+
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> <!-- we will use this as the styling script for our webmap-->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+		<link rel="stylesheet" href="plugins/Leaflet.LinearMeasurement.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			html, body, #map {
+				height: 100%;
+			}
+			.leaflet-control-locate.leaflet-control {
+				/*margin-top: 0;*/
+				border-bottom: none;
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+			.leaflet-control:has(.icon-ruler) {
+				margin-top: 0;
+				border-top: 1px solid rgba(0,0,0,0.2);
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+			}
+
+			/* ikona za mjerenje duljina */
+			.icon-active { 
+				background-color: #FF0080 !important;
+			}
+
+			
+			/*img.leaflet-marker-icon {
+				filter: hue-rotate(244deg);
+			}*/
+		</style>
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> <!-- this is the javascript file that doeas the magic-->
+		<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+		<script src="plugins/Leaflet.LinearMeasurement.js"></script>
+		<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+		<script src="asset/Pruga.geojson"></script><!-- this is our datafile -->
+		<script src="asset/hzi_zcp.geojson"></script><!-- this is our datafile -->
+		<script src="asset/parenzana_hr.geojson"></script><!-- this is our datafile -->
+	</head>
+	<body>
+		<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
+		<script>
+
+			var LeafIcon = L.Icon.extend({
+				options: {
+					//shadowUrl: 'leaf-shadow.png',
+					iconSize:     [48, 48],
+					//shadowSize:   [50, 64],
+					iconAnchor:   [0, 47],
+					//shadowAnchor: [4, 62],
+					popupAnchor:  [9, -48]
+				}
+			});
+
+			var redIcon = new LeafIcon({iconUrl: 'img/red-flag-pole-svgrepo-com.svg'}),
+				blueIcon = new LeafIcon({iconUrl: 'img/blue-flag-pole-svgrepo-com.svg'}),
+				brownIcon = new LeafIcon({iconUrl: 'img/brown-flag-pole-svgrepo-com.svg'}),
+				orangeIcon = new LeafIcon({iconUrl: 'img/orange-flag-pole-svgrepo-com.svg'}),
+				purpleIcon = new LeafIcon({iconUrl: 'img/purple-flag-pole-svgrepo-com.svg'}),
+				yellowIcon = new LeafIcon({iconUrl: 'img/yellow-flag-pole-svgrepo-com.svg'}),
+				greenIcon = new LeafIcon({iconUrl: 'img/green-flag-pole-svgrepo-com.svg'}),
+				landslide = new LeafIcon({iconUrl: 'img/traffic-sign-svgrepo-com.svg'});
+/*
+			var koprivnica = L.marker([46.17507, 16.81610], {icon: redIcon}).bindPopup('Deponija Koprivnica, KC');
+				drnje    = L.marker([46.21554, 16.89859], {icon: blueIcon}).bindPopup('Deponija Drnje, KC');
+				botovo    = L.marker([46.24193, 16.93403], {icon: greenIcon}).bindPopup('Deponija Botovo, KC');
+				keter    = L.marker([46.225167117204535, 16.90652132034302], {icon: brownIcon}).bindPopup('Deponija Keter, KC');
+				keter2    = L.marker([46.17436267427271, 16.921691894531254], {icon: purpleIcon}).bindPopup('Deponija Keter2, KC');
+				keter3    = L.marker([46.20502249977535, 16.96151733398438], {icon: yellowIcon}).bindPopup('Deponija Keter3, KC');
+				privremeno  = L.marker([46.15247143952419, 17.015075683593754], {icon: orangeIcon}).bindPopup('Gabajeva Greda, KC');
+*/
+			var deponije = [
+				[46.17507, 16.81610, 'Deponija Koprivnica, KC', redIcon],
+				[46.21554, 16.89859, 'Deponija Drnje, KC', blueIcon],
+				[46.24193, 16.93403, 'Deponija Botovo, KC', greenIcon],
+				[46.225167117204535, 16.90652132034302, 'Deponija Keter, KC', brownIcon],
+				[46.17436267427271, 16.921691894531254, 'Deponija Keter2, KC', purpleIcon],
+				[46.20502249977535, 16.96151733398438, 'Deponija Keter3, KC', yellowIcon],
+				[46.15247143952419, 17.015075683593754, 'Gabajeva Greda, KC', orangeIcon]
+			]
+
+			var klizista = [
+				[45.43257956351899,13.977691233158112, 'Buzet 7, km 34+540/580', 'INs_Pula'],
+				[45.42101,13.99937, 'Buzet 8, km 36+800/900', 'INs_Pula'],
+				[45.34719,14.10819, 'Lupoglav, km 50+050/350', 'INs_Pula'],
+				[45.24497,13.95520, 'Dubravica, km 69+450/520', 'INs_Pula'],
+				[45.24182,13.94697, 'Pazin, skret.1, km 70+220/300', 'INs_Pula'],
+				[45.23570,13.93934, 'Vranica, km 71+300/430', 'INs_Pula'],
+				[45.33522,14.12907, 'L213-1, km 3+050/150', 'INs_Pula'],
+				[45.33123,14.13252, 'L213-2, km 3+500/700', 'INs_Pula'],
+				[44.8686750330402,15.446895360946657, 'Dugi Dol, km 65+050/350 pruge M604', 'Ns_Ogulin'],
+				[45.05017,15.40393, 'Plavča Draga 1, km 33+680/710 pruge M604', 'Ns_Ogulin'],
+				[45.04866,15.40642, 'Plavča Draga 2, km 33+950 do km 34+000 pruge M604', 'Ns_Ogulin'],
+				[45.38660,15.42051, 'Lipa, km 499+170/320 pruge M202', 'Ns_Ogulin'],
+				[45.38008,15.41669, 'Bunker II, km 499+950 do km 500+040 pruge M202', 'Ns_Ogulin'],
+				[45.33633,15.37141, 'Generalski Stol, km 506+505/530 pruge M202', 'Ns_Ogulin'],
+				[45.32987,15.36361, 'Zatezali, km 507+430/470 pruge M202', 'Ns_Ogulin'],
+				[45.30622,15.35807, 'Donje Dubrave, km 510+180/300 pruge M202', 'Ns_Ogulin'],
+				[45.30719,15.34946, 'Požari, km 511+000/035 pruge M202', 'Ns_Ogulin'],
+				[45.28858,15.32944, 'Globornica, km 513+700/765 pruge M202', 'Ns_Ogulin'],
+				[45.27479,15.30163, 'Gornje Dubrave, km 516+700/850 pruge M202', 'Ns_Ogulin'],
+				[45.22274,15.33082, 'Košare, km 523+200/400 pruge M202', 'Ns_Ogulin']
+			]
+
+			//var deponije = L.layerGroup([koprivnica, drnje, botovo, keter, keter2, keter3, privremeno]);
+
+			var pruga_style = {
+				'color': '#E3911E',
+				'weight': 5,
+				'opacity': 0.65
+			};
+			var zcp_style = {
+				color: '#0870E6',
+				weight: 3,
+				opacity: 1,
+				radius: 100
+			};
+			var parenzana_style = {
+				'color': '#CA4CE4',
+				'weight': 3,
+				'opacity': 1
+			};
+
+			var pruge = L.geoJson(pruga, {
+				style: function(feature) {
+					switch (feature.properties.type) {
+					case 'disused': return {color: "#ff0000"};
+					case 'abandoned': return {color: "#8D6F64"};
+					case 'proposed': return {color: "#5DE2E7"};
+					case 'rail': return pruga_style;
+					}
+				},
+				//style: pruga_style,
+				onEachFeature: function(feature, layer){
+					var popupContent = "<p>Pruga <strong>" + feature.properties.OznakaPruge + " " + feature.properties.NazivPruge + "</strong></p><p>Građevinska duljina pruge " + feature.properties.DuljPruge + " (km)</p>";
+					
+					if (feature.properties && feature.properties.popupContent) {
+						popupContent += feature.properties.popupContent;
+					}
+
+					layer.on('mouseover', function () {
+						this.setStyle({
+						'color': '#ADD527'
+						});
+					});
+					layer.on('mouseout', function () {
+						this.setStyle({
+						"color": "#E3911E"
+						});
+					});
+
+					var tooltipContent = '<strong>Pruga ' + feature.properties.OznakaPruge + ' ' + feature.properties.NazivPruge + '</strong>';
+    				layer.bindTooltip(tooltipContent);
+
+					layer.bindPopup(popupContent);
+				}
+			});
+
+			var hzi_zcp = L.geoJSON(hzi_zcp, {
+				pointToLayer: function (feature, latlng) {
+					var title = feature.properties.Stacionaza;
+					return L.circle(latlng, zcp_style);
+				},
+				onEachFeature: function(feature, layer){
+					var popupContent = '<p>Pruga <strong>' + feature.properties.OznakaPruge + ' ' + feature.properties.NazivPruge + '</strong></p><p>Stacionaža: ' + feature.properties.Stacionaza + '<br />Vrsta popođenja: ' + feature.properties.VrstaPopodenja + '<br />Vrsta ceste: ' + feature.properties.VrstaCeste + '<br />Postojeće osiguranje: ' + feature.properties.PostojeceOsiguranje + '<br /><a href=' + feature.properties.Vezanakatastarskiplan + ' target="_blank" rel="noopener noreferrer">Poveznica na katastarski plan</a></p><p><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
+					
+					if (feature.properties && feature.properties.popupContent) {
+						popupContent += feature.properties.popupContent;
+					};
+
+					layer.on('mouseover', function () {
+						this.setStyle({
+						'color': '#CA4CE4',
+						'fillColor': '#CA4CE4'
+						});
+						this.setRadius(200);
+					});
+					layer.on('mouseout', function () {
+						this.setStyle({
+						'color': '#0870E6',
+						'fillColor': '#0870E6'
+						});
+						this.setRadius(100);
+					});
+
+					var tooltipContent = '<strong>ŽCP u km ' + feature.properties.Stacionaza + ' pruge ' + feature.properties.OznakaPruge + '</strong>';
+    				layer.bindTooltip(tooltipContent);
+
+					layer.bindPopup(popupContent);
+				}
+			});
+
+			var parenzana_hrl = L.geoJSON(parenzana_hr, {
+				style: parenzana_style,
+				onEachFeature: function(feature, layer){
+					var popupContent = '<p>Pruga <strong>' + feature.properties.NazivPruge + '</strong></p><p>Građevinska duljina pruge ' + feature.properties.DuljPruge + ' (km)<br />Širina tračnica: 760 mm<br /><a href="https://www.parenzana.net/hr/povijest-parenzane/zanimljivosti/5608">Statistički i tehnički podaci</a><br /><a href="https://www.parenzana.net/si/multimedija/karta-gps">Karta/GPS</a></p>';
+					
+					if (feature.properties && feature.properties.popupContent) {
+						popupContent += feature.properties.popupContent;
+					}
+
+					var tooltipContent = '<strong>' + feature.properties.NazivPruge + '</strong>';
+    				layer.bindTooltip(tooltipContent);
+
+					layer.bindPopup(popupContent);
+				}
+			});
+
+			var mapOSMattribution = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>, ' +
+					'Imagery © <a href="https://geoportal.dgu.hr/">DGU</a>, ' +
+					'Podaci © <a href="https://www.hzinfra.hr/">HŽI</a>, ' +
+					'Izradio <a href="https://ivgeo.net/">ivgeo</a>',
+				mapOSMurl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+			var DGUattribution = 'Map data &copy; <a href="https://www.hzinfra.hr/">HŽI</a>, ' +
+					'Imagery © <a href="https://geoportal.dgu.hr/">DGU</a>, ' +
+					'Izradio <a href="https://ivgeo.net/">ivgeo</a>',
+				mapOSMurl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+
+			var DOF5_2011 = L.tileLayer.wms("https://geoportal.dgu.hr/wms", {
+				layers: 'DOF',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+			var DOF5_2019_20 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2019_2020/wms", {
+				layers: 'OI.OrthoimageCoverage',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+			var DOF5_2021_22 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2021_2022/wms", {
+				layers: 'OI.OrthoimageCoverage',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+			var DOF5L_2022_23 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_lidar_2022_2023/wms", {
+				layers: 'OI.OrthoimageCoverage',
+				format: 'image/png',
+				transparent: true,
+				maxZoom: 20,
+				attribution: DGUattribution
+			});
+			var DOF05_gp = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_500_gp/wms", {
+				layers: 'OI.OrthoimageCoverage',
+				format: 'image/png',
+				transparent: true,
+				maxZoom: 20,
+				attribution: DGUattribution
+			});
+			var TK25 = L.tileLayer.wms("https://geoportal.dgu.hr/services/tk/wms", {
+				layers: 'TK25',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+			var HOK = L.tileLayer.wms("https://geoportal.dgu.hr/services/hok/wms", {
+				layers: 'HOK5',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+			var DKP = L.tileLayer.wms("https://api.uredjenazemlja.hr/services/inspire/cp_wms/wms", {
+				layers: 'CP.CadastralZoning,CP.CadastralParcel',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+
+			var streets = L.tileLayer(mapOSMurl, {maxZoom: 19, attribution: mapOSMattribution});
+			var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: mapOSMattribution});
+
+			var map = L.map('map', {
+				center: [44.8, 16.5],
+				zoom: 8,
+				layers: [streets, pruge]
+			});
+
+			var layerGroupKLIZISTA = L.markerClusterGroup();
+			for (i = 0; i < klizista.length; i++) {
+				var a = klizista[i];
+				var title = a[2];
+				var popup = '<p><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
+				var marker = L.marker(new L.LatLng(a[0], a[1]), {
+					title: title,
+					alt: title, //accessible name of this marker
+					icon: landslide
+				});
+				marker.bindPopup(title + popup);
+				layerGroupKLIZISTA.addLayer(marker);
+			}
+			map.addLayer(layerGroupKLIZISTA); //turned on by default
+
+			var layerGroupDEPONIJE = L.layerGroup();
+			for (i = 0; i < deponije.length; i++) {
+				var a = deponije[i];
+				var title = a[2];
+				var popup = '<p><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
+				var marker = L.marker(new L.LatLng(a[0], a[1]), {
+					title: title,
+					alt: title,
+					icon: a[3]
+				});
+				marker.bindPopup(title + popup);
+				layerGroupDEPONIJE.addLayer(marker);
+			}
+			map.addLayer(layerGroupDEPONIJE); //turned on by default
+
+			// stavi sve zcp u klaster
+			var hzi_zcpG = L.markerClusterGroup();
+			hzi_zcpG.addLayer(hzi_zcp);
+
+			var baseMaps = {
+				"Streets": streets,
+				"Topo": openTopoMap,
+				"DOF 2011": DOF5_2011,
+				"DOF 2019/20": DOF5_2019_20,
+				"DOF 2021/22": DOF5_2021_22,
+				"DOF LiDAR 2022/23": DOF5L_2022_23,
+				"DOF 500 GP 2022": DOF05_gp,
+				"DKP": DKP,
+				"TK25": TK25,
+				"HOK": HOK
+			};
+			var overlayMaps = {
+				"Deponije": layerGroupDEPONIJE,
+				"Klizišta": layerGroupKLIZISTA,
+				"Pruge": pruge,
+				"ŽCP": hzi_zcpG,
+				"Parenzana": parenzana_hrl
+			};
+			L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+			L.control.locate({
+					showPopup: true, // display a popup when the user click on the inner marker
+					strings: {
+					title: "Pokaži gdje sam",  // title of the locate control
+					popup: "Nalazite se unutar {distance} metara od ove lokacije",  // text to appear if user clicks on circle
+					outsideMapBoundsMsg: "Izgleda da se nalazite izvan granica karte!" // default message for onLocationOutsideMapBounds
+					},
+				}
+			).addTo(map);
+			
+			L.control.scale({metric: true, imperial: false}).addTo(map);
+			
+			var popup = L.popup();
+			function onMapClick(e) {
+				popup
+					.setLatLng(e.latlng)
+					.setContent('<p>Koordinate (geografska širina i duljina)</p><strong>φ, λ : ' + e.latlng.lat + ', ' + e.latlng.lng + '<strong><p><a href="https://www.google.com/maps/search/?api=1&query=' + e.latlng.lat + ', ' + e.latlng.lng + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a>')
+					.openOn(map);
+			}
+			map.on('contextmenu', onMapClick);
+
+			map.addControl(new L.Control.LinearMeasurement({
+				unitSystem: 'meter',
+				color: '#FF0080',
+				type: 'line',
+				position: 'topleft'
+			}));
+
+		</script>
+	  </body>
+</html>
