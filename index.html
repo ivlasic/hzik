@@ -58,8 +58,9 @@
 		<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
 		<script src="asset/Pruga.geojson"></script><!-- this is our datafile -->
-		<script src="asset/hzi_zcp.geojson"></script><!-- this is our datafile -->
+		<script src="asset/hzi_zcp.geojson"></script><!-- žcp-i -->
 		<script src="asset/parenzana_hr.geojson"></script><!-- this is our datafile -->
+		<script src="asset/hzi_poi.geojson"></script><!-- kolodvori i stajališta -->
 	</head>
 	<body>
 		<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
@@ -292,6 +293,52 @@
 				attribution: DGUattribution
 			});
 
+			/* HZIPOI */
+			function popProzorHZIkolodvori(feature, layer){
+				var popupContent = "<p>Kolodvor <strong>" + feature.properties.name + "</strong></p>";
+				
+				if (feature.properties && feature.properties.popupContent) {
+					popupContent += feature.properties.popupContent;
+				}
+				layer.bindPopup(popupContent);
+			}
+
+			function HZIPOIMarker(feature, latlng) {
+					var smallIcon = L.icon({
+						iconSize: [16, 16],
+						iconAnchor: [8, 16],
+						popupAnchor:  [0, -16],
+						iconUrl: 'img/' + feature.properties.Ikona + '.png'
+					});
+					return L.marker(latlng, {icon: smallIcon, title: feature.properties.name, alt: feature.properties.name}).bindTooltip(feature.properties.name, {offset: [0, 34], direction: 'center', permanent: false, opacity: 0.9, className:"hzipoi"});
+			}
+
+			var HZIkolodvori = L.geoJson(HZIPOI, {
+				filter: function(feature, layer) {
+					return feature.properties.fclass =='railway_station';
+				},
+				onEachFeature: popProzorHZIkolodvori,
+				pointToLayer: HZIPOIMarker
+			});
+
+			function popProzorHZIstajalista(feature, layer){
+					var popupContent = "<p>Stajalište <strong>" + feature.properties.name + "</strong></p>";
+					
+					if (feature.properties && feature.properties.popupContent) {
+						popupContent += feature.properties.popupContent;
+					}
+					layer.bindPopup(popupContent);
+			}
+
+			var HZIstajalista = L.geoJson(HZIPOI, {
+				filter: function(feature, layer) {
+					return feature.properties.fclass =='railway_halt';
+				},
+				onEachFeature: popProzorHZIstajalista,
+				pointToLayer: HZIPOIMarker
+			});
+			/* end HZIPOI */
+
 			var streets = L.tileLayer(mapOSMurl, {maxZoom: 19, attribution: mapOSMattribution});
 			var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: mapOSMattribution});
 
@@ -352,6 +399,8 @@
 				"Klizišta": layerGroupKLIZISTA,
 				"Pruge": pruge,
 				"ŽCP": hzi_zcpG,
+				"Kolodvori": HZIkolodvori,
+				"Stajališta": HZIstajalista,
 				"Parenzana": parenzana_hrl
 			};
 			L.control.layers(baseMaps, overlayMaps).addTo(map);
