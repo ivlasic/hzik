@@ -248,6 +248,12 @@
 				transparent: true,
 				attribution: DGUattribution
 			});
+			var DOF5_2017_18 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2017_2018/wms", {
+				layers: 'OI.OrthoimageCoverage',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
 			var DOF5_2019_20 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2019_2020/wms", {
 				layers: 'OI.OrthoimageCoverage',
 				format: 'image/png',
@@ -386,6 +392,7 @@
 				"Streets": streets,
 				"Topo": openTopoMap,
 				"DOF 2011": DOF5_2011,
+				"DOF 2017/18": DOF5_2017_18,
 				"DOF 2019/20": DOF5_2019_20,
 				"DOF 2021/22": DOF5_2021_22,
 				"DOF LiDAR 2022/23": DOF5L_2022_23,
