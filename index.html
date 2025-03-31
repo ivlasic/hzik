@@ -113,26 +113,26 @@
 			]
 
 			var klizista = [
-				[45.43257956351899,13.977691233158112, 'Buzet 7, km 34+540/580', 'INs_Pula'],
-				[45.42101,13.99937, 'Buzet 8, km 36+800/900', 'INs_Pula'],
-				[45.34719,14.10819, 'Lupoglav, km 50+050/350', 'INs_Pula'],
-				[45.24497,13.95520, 'Dubravica, km 69+450/520', 'INs_Pula'],
-				[45.24182,13.94697, 'Pazin, skret.1, km 70+220/300', 'INs_Pula'],
-				[45.23570,13.93934, 'Vranica, km 71+300/430', 'INs_Pula'],
-				[45.33522,14.12907, 'L213-1, km 3+050/150', 'INs_Pula'],
-				[45.33123,14.13252, 'L213-2, km 3+500/700', 'INs_Pula'],
-				[44.8686750330402,15.446895360946657, 'Dugi Dol, km 65+050/350 pruge M604', 'Ns_Ogulin'],
-				[45.05017,15.40393, 'Plavča Draga 1, km 33+680/710 pruge M604', 'Ns_Ogulin'],
-				[45.04866,15.40642, 'Plavča Draga 2, km 33+950 do km 34+000 pruge M604', 'Ns_Ogulin'],
-				[45.38660,15.42051, 'Lipa, km 499+170/320 pruge M202', 'Ns_Ogulin'],
-				[45.38008,15.41669, 'Bunker II, km 499+950 do km 500+040 pruge M202', 'Ns_Ogulin'],
-				[45.33633,15.37141, 'Generalski Stol, km 506+505/530 pruge M202', 'Ns_Ogulin'],
-				[45.32987,15.36361, 'Zatezali, km 507+430/470 pruge M202', 'Ns_Ogulin'],
-				[45.30622,15.35807, 'Donje Dubrave, km 510+180/300 pruge M202', 'Ns_Ogulin'],
-				[45.30719,15.34946, 'Požari, km 511+000/035 pruge M202', 'Ns_Ogulin'],
-				[45.28858,15.32944, 'Globornica, km 513+700/765 pruge M202', 'Ns_Ogulin'],
-				[45.27479,15.30163, 'Gornje Dubrave, km 516+700/850 pruge M202', 'Ns_Ogulin'],
-				[45.22274,15.33082, 'Košare, km 523+200/400 pruge M202', 'Ns_Ogulin']
+				[45.43257956351899,13.977691233158112, 'R101 Buzet 7, km 34+540/580', '3D', 'INs_Pula'],
+				[45.42101,13.99937, 'R101 Buzet 8, km 36+800/900', '3D', 'INs_Pula'],
+				[45.34719,14.10819, 'R101 Lupoglav, km 50+050/350', 'visinsko', 'INs_Pula'],
+				[45.24497,13.95520, 'R101 Dubravica, km 69+450/520', 'visinsko', 'INs_Pula'],
+				[45.24182,13.94697, 'R101 Pazin, skret.1, km 70+220/300', 'visinsko', 'INs_Pula'],
+				[45.23570,13.93934, 'R101 Vranica, km 71+300/430', 'visinsko', 'INs_Pula'],
+				[45.33522,14.12907, 'L213-1, km 3+050/150', '3D', 'INs_Pula'],
+				[45.33123,14.13252, 'L213-2, km 3+500/700', '3D', 'INs_Pula'],
+				[44.8686750330402,15.446895360946657, 'Dugi Dol, km 65+050/350 pruge M604', '3D', 'Ns_Ogulin'],
+				[45.05017,15.40393, 'Plavča Draga 1, km 33+680/710 pruge M604', '3D', 'Ns_Ogulin'],
+				[45.04866,15.40642, 'Plavča Draga 2, km 33+950 do km 34+000 pruge M604', '3D', 'Ns_Ogulin'],
+				[45.38660,15.42051, 'Lipa, km 499+170/320 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.38008,15.41669, 'Bunker II, km 499+950 do km 500+040 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.33633,15.37141, 'Generalski Stol, km 506+505/530 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.32987,15.36361, 'Zatezali, km 507+430/470 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.30622,15.35807, 'Donje Dubrave, km 510+180/300 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.30719,15.34946, 'Požari, km 511+000/035 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.28858,15.32944, 'Globornica, km 513+700/765 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.27479,15.30163, 'Gornje Dubrave, km 516+700/850 pruge M202', '3D', 'Ns_Ogulin'],
+				[45.22274,15.33082, 'Košare, km 523+200/400 pruge M202', '3D', 'Ns_Ogulin']
 			]
 
 			//var deponije = L.layerGroup([koprivnica, drnje, botovo, keter, keter2, keter3, privremeno]);
@@ -366,7 +366,7 @@
 			for (i = 0; i < klizista.length; i++) {
 				var a = klizista[i];
 				var title = a[2];
-				var popup = '<p><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
+				var popup = '<p>Praćenje pomaka: ' + a[3] + '<br /><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
 				var marker = L.marker(new L.LatLng(a[0], a[1]), {
 					title: title,
 					alt: title, //accessible name of this marker
