@@ -232,21 +232,6 @@
 						popupContent += feature.properties.popupContent;
 					};
 
-					layer.on('mouseover', function () {
-						this.setStyle({
-						'color': '#CA4CE4',
-						'fillColor': '#CA4CE4'
-						});
-						this.setRadius(200);
-					});
-					layer.on('mouseout', function () {
-						this.setStyle({
-						'color': '#0870E6',
-						'fillColor': '#0870E6'
-						});
-						this.setRadius(100);
-					});
-
 					var tooltipContent = '<strong>Točka br. ' + feature.properties.TOCKA + ' u km ' + feature.properties.STACIONAZA + '</strong>';
     				layer.bindTooltip(tooltipContent);
 
