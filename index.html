@@ -59,8 +59,9 @@
 
 		<script src="asset/Pruga.geojson"></script><!-- this is our datafile -->
 		<script src="asset/hzi_zcp.geojson"></script><!-- žcp-i -->
-		<script src="asset/parenzana_hr.geojson"></script><!-- this is our datafile -->
+		<script src="asset/parenzana_hr.geojson"></script><!-- paranzana -->
 		<script src="asset/hzi_poi.geojson"></script><!-- kolodvori i stajališta -->
+		<script src="asset/hzi_stgo.geojson"></script><!-- stalne točke geodetske osnove -->
 	</head>
 	<body>
 		<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
@@ -217,6 +218,36 @@
 					});
 
 					var tooltipContent = '<strong>ŽCP u km ' + feature.properties.Stacionaza + ' pruge ' + feature.properties.OznakaPruge + '</strong>';
+    				layer.bindTooltip(tooltipContent);
+
+					layer.bindPopup(popupContent);
+				}
+			});
+
+			var hzi_stgo = L.geoJSON(hzi_stgo, {
+				onEachFeature: function(feature, layer){
+					var popupContent = '<p>Br.t.: <strong>' + feature.properties.TOCKA + '</strong></p><ul><li>Stacionaža: ' + feature.properties.STACIONAZA + '</li><li>Udaljenost od osi: ' + feature.properties.UDALJENOST_OD_OSI + '</li><li>Stabilizacija: ' + feature.properties.STABILIZACIJA + '</li><li>HTRS96/TM E,N: ' + feature.properties.EHTRS96TM + ',' + feature.properties.NHTRS96TM + '</li></ul><ul><li><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></li></ul>';
+					
+					if (feature.properties && feature.properties.popupContent) {
+						popupContent += feature.properties.popupContent;
+					};
+
+					layer.on('mouseover', function () {
+						this.setStyle({
+						'color': '#CA4CE4',
+						'fillColor': '#CA4CE4'
+						});
+						this.setRadius(200);
+					});
+					layer.on('mouseout', function () {
+						this.setStyle({
+						'color': '#0870E6',
+						'fillColor': '#0870E6'
+						});
+						this.setRadius(100);
+					});
+
+					var tooltipContent = '<strong>Točka br. ' + feature.properties.TOCKA + ' u km ' + feature.properties.STACIONAZA + '</strong>';
     				layer.bindTooltip(tooltipContent);
 
 					layer.bindPopup(popupContent);
@@ -396,6 +427,9 @@
 			// stavi sve zcp u klaster
 			var hzi_zcpG = L.markerClusterGroup();
 			hzi_zcpG.addLayer(hzi_zcp);
+			// stavi sve STGO u klaster
+			var hzi_stgoG = L.markerClusterGroup();
+			hzi_stgoG.addLayer(hzi_stgo);
 
 			var baseMaps = {
 				"Streets": streets,
@@ -415,6 +449,7 @@
 				"Klizišta": layerGroupKLIZISTA,
 				"Pruge": pruge,
 				"ŽCP": hzi_zcpG,
+				"STGO": hzi_stgoG,
 				"Kolodvori": HZIkolodvori,
 				"Stajališta": HZIstajalista,
 				"Parenzana": parenzana_hrl
