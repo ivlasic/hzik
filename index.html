@@ -409,7 +409,7 @@
 				if (typeof volumen === "undefined") {
 					var volumen = '';
 				} else {
-					var volumen = '<p>Volumen: ' + volumen + ' m³</p>'
+					var volumen = '<p>Volumen: <u>' + volumen + ' m³</u></p>'
 				}
 				var popup = volumen + '<p><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
 				var marker = L.marker(new L.LatLng(a[0], a[1]), {
