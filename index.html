@@ -117,7 +117,11 @@
 				[44.08696659628629, 15.417927503585817, 'Deponija tucanika Prkos, ST', greenIcon, '4340'],
 				[44.083617125818144, 15.459940284490587, 'Deponija tucanika Škabrnja, ST', greenIcon, '5570'],
 				[44.06487412494149, 15.501360297203066, 'Deponija tucanika Nadin, ST', redIcon],
-				[44.05278866536811, 15.545756220817568, 'Deponija tucanika Raštević, ST', redIcon]
+				[44.05278866536811, 15.545756220817568, 'Deponija tucanika Raštević, ST', redIcon],
+				[44.03915438612437, 15.568581819534304, 'Deponija tucanika Šopot, ST', redIcon],
+				[44.02754677465565, 15.612610280513765, 'Deponija tucanika Benkovac 1, ST', redIcon],
+				[44.024436948660146, 15.61721831560135, 'Deponija tucanika Benkovac 2, ST', redIcon, '1044'],
+				[44.024829422517755, 15.616427063941957, 'Deponija tucanika Benkovac novi, ST', purpleIcon, '38170']
 			]
 
 			var klizista = [
@@ -233,7 +237,7 @@
 
 			var hzi_stgo = L.geoJSON(hzi_stgo, {
 				onEachFeature: function(feature, layer){
-					var popupContent = '<p>Br.t.: <strong>' + feature.properties.TOCKA + '</strong></p><ul><li>Stacionaža: ' + feature.properties.STACIONAZA + '</li><li>Udaljenost od osi: ' + feature.properties.UDALJENOST_OD_OSI + '</li><li>Stabilizacija: ' + feature.properties.STABILIZACIJA + '</li><li>HTRS96/TM E,N: ' + feature.properties.EHTRS96TM + ',' + feature.properties.NHTRS96TM + '</li></ul><ul><li><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></li></ul>';
+					var popupContent = '<p>Br.t.: <strong>' + feature.properties.TOCKA + '</strong></p><ul><li>Stacionaža: ' + feature.properties.STACIONAZA + '</li><li>Udaljenost od osi: ' + feature.properties.UDALJENOST_OD_OSI + '</li><li>Stabilizacija: ' + feature.properties.STABILIZACIJA + '</li><li>HTRS96/TM E,N: ' + feature.properties.EHTRS96TM + ',' + feature.properties.NHTRS96TM + ',' + feature.properties.H + '</li></ul><ul><li><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></li></ul>';
 					
 					if (feature.properties && feature.properties.popupContent) {
 						popupContent += feature.properties.popupContent;
