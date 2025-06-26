@@ -207,7 +207,22 @@
 					return L.circle(latlng, zcp_style);
 				},
 				onEachFeature: function(feature, layer){
-					var popupContent = '<p>Pruga <strong>' + feature.properties.OznakaPruge + ' ' + feature.properties.NazivPruge + '</strong></p><p>Stacionaža: ' + feature.properties.Stacionaza + '<br />Vrsta popođenja: ' + feature.properties.VrstaPopodenja + '<br />Vrsta ceste: ' + feature.properties.VrstaCeste + '<br />Postojeće osiguranje: ' + feature.properties.PostojeceOsiguranje + '<br /><a href=' + feature.properties.Vezanakatastarskiplan + ' target="_blank" rel="noopener noreferrer">Poveznica na katastarski plan</a></p><p><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
+
+					var name = feature.properties.Name;
+					if (typeof name !== "undefined" && name !== null && name !== '') {
+						var name = 'Naziv ŽCP-a: ' + name + '<br />';
+					} else {
+						var name = '';
+					}
+
+					var image = feature.properties.Image;
+					if (typeof image !== "undefined" && image !== null && image !== '') {
+						var image = '<a href="' + image + '" target="_blank" rel="noopener noreferrer"><img src="' + image + '" alt="Google fotografija ŽCP-a" width="60" height="50"></a><br />';
+					} else {
+						var image = '';
+					}
+
+					var popupContent = '<p>Pruga <strong>' + feature.properties.OznakaPruge + ' ' + feature.properties.NazivPruge + '</strong></p><p>' + name + 'Stacionaža: ' + feature.properties.Stacionaza + '<br />Vrsta popođenja: ' + feature.properties.VrstaPopodenja + '<br />Vrsta ceste: ' + feature.properties.VrstaCeste + '<br />Postojeće osiguranje: ' + feature.properties.PostojeceOsiguranje + '<br />' + image + '<a href=' + feature.properties.Vezanakatastarskiplan + ' target="_blank" rel="noopener noreferrer">Poveznica na katastarski plan</a></p><p><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
 					
 					if (feature.properties && feature.properties.popupContent) {
 						popupContent += feature.properties.popupContent;
