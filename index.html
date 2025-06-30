@@ -19,8 +19,10 @@
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" /> <!-- we will use this as the styling script for our webmap-->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
 		<link rel="stylesheet" href="plugins/Leaflet.LinearMeasurement.css" />
-		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
-		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet-search@4.0.0/dist/leaflet-search.min.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet-search@4.0.0/dist/leaflet-search.mobile.min.css" />
 		<style>
 			body {
 				padding: 0;
@@ -55,7 +57,8 @@
 		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script> <!-- this is the javascript file that doeas the magic-->
 		<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
 		<script src="plugins/Leaflet.LinearMeasurement.js"></script>
-		<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+		<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+		<script src="plugins/leaflet-search.src.js"></script>
 
 		<script src="asset/Pruga.geojson"></script><!-- this is our datafile -->
 		<script src="asset/hzi_zcp.geojson"></script><!-- žcp-i -->
@@ -501,6 +504,13 @@
 				type: 'line',
 				position: 'topleft'
 			}));
+
+			var controlSearch = new L.Control.Search({
+				layer: L.featureGroup([layerGroupDEPONIJE, layerGroupKLIZISTA, HZIkolodvori, HZIstajalista]),
+				zoom: 16,
+				textPlaceholder: 'Traži...'
+			});
+			map.addControl(controlSearch);
 
 		</script>
 	  </body>
