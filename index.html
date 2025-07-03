@@ -89,7 +89,9 @@
 				pinkIcon = new LeafIcon({iconUrl: 'img/pink-flag-pole-svgrepo-com.svg'}),
 				yellowIcon = new LeafIcon({iconUrl: 'img/yellow-flag-pole-svgrepo-com.svg'}),
 				greenIcon = new LeafIcon({iconUrl: 'img/green-flag-pole-svgrepo-com.svg'}),
-				landslide = new LeafIcon({iconUrl: 'img/traffic-sign-svgrepo-com.svg'});
+				landslideIcon = new LeafIcon({iconUrl: 'img/traffic-sign-svgrepo-com.svg'});
+				trainIcon = new LeafIcon({iconUrl: 'img/train-svgrepo-com.svg'});
+				rullerIcon = new LeafIcon({iconUrl: 'img/ruler-svgrepo-com.svg'});
 /*
 			var koprivnica = L.marker([46.17507, 16.81610], {icon: redIcon}).bindPopup('Deponija Koprivnica, KC');
 				drnje    = L.marker([46.21554, 16.89859], {icon: blueIcon}).bindPopup('Deponija Drnje, KC');
@@ -150,6 +152,28 @@
 				[45.22274,15.33082, 'Košare, km 523+200/400 pruge M202', '3D', 'Ns_Ogulin']
 			]
 
+			var hzi_NS = [
+				[45.8448565,15.8120043, 'Nadzorna grupa', 'Zaprešić', 'Kolodvorska ulica 40, 10290 Zaprešić', 'https://geoportal.dgu.hr/#/?lat=45.8448565&lng=15.8120043&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[46.1659446,16.8183915, 'Nadzorno središte', 'Koprivnica', 'Kolodvorska 13, 48000 Koprivnica', 'https://geoportal.dgu.hr/#/?lat=46.1659446&lng=16.8183915&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.2669635,15.2279344, 'Nadzorno središte', 'Ogulin', 'Ulica Josipa Jurja Strossmayera 10, 47300 Ogulin', 'https://geoportal.dgu.hr/#/?lat=45.2669635&lng=15.2279344&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.5538411,18.6834028, 'Nadzorno središte', 'Osijek', 'Ulica Stjepana Radića 57, 31000 Osijek', 'https://geoportal.dgu.hr/#/?lat=45.5538411&lng=18.6834028&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.3237148,14.4509728, 'Nadzorno središte', 'Rijeka', 'Brajdica 10, 51000 Rijeka', 'https://geoportal.dgu.hr/#/?lat=45.3237148&lng=14.4509728&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.1593542,18.0174865, 'Nadzorno središte', 'Slavonski Brod', 'Trg kralja Tomislava 1, 35000 Slavonski Brod', 'https://geoportal.dgu.hr/#/?lat=45.1593542&lng=18.0174865&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[43.5058852,16.4427651, 'Nadzorno središte', 'Split', 'Zlodrina poljana 21, 21000 Split', 'https://geoportal.dgu.hr/#/?lat=43.5058852&lng=16.4427651&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[46.3084918,16.3494263, 'Nadzorno središte', 'Varaždin', 'Ulica Matice hrvatske 2, 42000 Varaždin', 'https://geoportal.dgu.hr/#/?lat=46.3084918&lng=16.3494263&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.2997539,18.8022397, 'Nadzorno središte', 'Vinkovci', 'Trg kralja Tomislava 3, 32100 Vinkovci', 'https://geoportal.dgu.hr/#/?lat=45.2997539&lng=18.8022397&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.8088024,15.9328786, 'Nadzorno središte', 'Zagreb', 'Ulica kralja Tomislava 2, 10000 Zagreb', 'https://geoportal.dgu.hr/#/?lat=45.8088024&lng=15.9328786&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[44.8792624,13.8484367, 'Ispostava nadzornog središta', 'Pula', 'Trščanska 21, 52100 Pula', 'https://geoportal.dgu.hr/#/?lat=44.8792624&lng=13.8484367&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.7577207,16.0107071, 'Nadzorna grupa', 'Ranžirni kolodvor', 'Sarajevska cesta 43B, 10000 Zagreb', 'https://geoportal.dgu.hr/#/?lat=45.7577207&lng=16.0107071&zoom=11&layerconfig=988&mode=2d', trainIcon],
+				[45.5014919,15.5446607, 'Nadzorna grupa', 'Karlovac', 'Ul. Vilima Reinera 3, 47000 Karlovac', 'https://geoportal.dgu.hr/#/?lat=45.5014919&lng=15.5446607&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[45.4916939,16.3740446, 'Nadzorna grupa', 'Sisak', 'Trg Republike 2, 44000 Sisak', 'https://geoportal.dgu.hr/#/?lat=45.4916939&lng=16.3740446&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[46.0256513,15.9064194, 'Nadzorna grupa', 'Zabok', 'Ul. Ksavera Šandora Gjalskog 3, 49210 Zabok', 'https://geoportal.dgu.hr/#/?lat=46.0256513&lng=15.9064194&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[45.3257891,16.9820685, 'Nadzorna grupa', 'Novska', 'Kolodvorska ulica 32, 44330 Novska', 'https://geoportal.dgu.hr/#/?lat=45.3257891&lng=16.9820685&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[45.8012517,16.2390767, 'Nadzorna grupa', 'Dugo Selo', 'Trnošćica ul. 15, 10370 Dugo Selo', 'https://geoportal.dgu.hr/#/?lat=45.8012517&lng=16.2390767&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[45.8011126,15.9828623, 'Nadzorna grupa', 'Glavni kolodvor', 'Trnjanska 11F, Zagreb', 'https://geoportal.dgu.hr/#/?lat=45.8011126&lng=15.9828623&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[46.3842893,16.4201617, 'Nadzorna grupa', 'Čakovec', 'Kolodvorska ulica 2, 40000 Čakovec', 'https://geoportal.dgu.hr/#/?lat=46.3842893&lng=16.4201617&zoom=11&layerconfig=988&mode=2d', rullerIcon]
+			]
+
 			//var deponije = L.layerGroup([koprivnica, drnje, botovo, keter, keter2, keter3, privremeno]);
 
 			var pruga_style = {
@@ -205,6 +229,9 @@
 			});
 
 			var hzi_zcp = L.geoJSON(hzi_zcp, {
+				filter: function(feature, layer) {
+					return feature.properties.MarkerIcon === 'zcp';
+				},
 				pointToLayer: function (feature, latlng) {
 					var title = feature.properties.Stacionaza;
 					return L.circle(latlng, zcp_style);
@@ -252,6 +279,22 @@
 					layer.bindPopup(popupContent);
 				}
 			});
+
+			/* HZI Nadzorna središta */
+			var hzi_NSG = L.layerGroup();
+			for (i = 0; i < hzi_NS.length; i++) {
+				var a = hzi_NS[i];
+				var title = a[2] + ': ' + a[3];
+				var popup = '<p>Adresa: ' + a[4] + '<br /><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
+				var marker = L.marker(new L.LatLng(a[0], a[1]), {
+					title: title,
+					alt: title,
+					riseOnHover: true,
+					icon: a[6]
+				});
+				marker.bindPopup(title + popup);
+				hzi_NSG.addLayer(marker);
+			};
 
 			var hzi_stgo = L.geoJSON(hzi_stgo, {
 				onEachFeature: function(feature, layer){
@@ -314,6 +357,12 @@
 				attribution: DGUattribution
 			});
 			var DOF5_2021_22 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2021_2022/wms", {
+				layers: 'OI.OrthoimageCoverage',
+				format: 'image/png',
+				transparent: true,
+				attribution: DGUattribution
+			});
+			var DOF5_2023_24 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2023_2024/wms", {
 				layers: 'OI.OrthoimageCoverage',
 				format: 'image/png',
 				transparent: true,
@@ -416,7 +465,7 @@
 				var marker = L.marker(new L.LatLng(a[0], a[1]), {
 					title: title,
 					alt: title, //accessible name of this marker
-					icon: landslide
+					icon: landslideIcon
 				});
 				marker.bindPopup(title + popup);
 				layerGroupKLIZISTA.addLayer(marker);
@@ -459,6 +508,7 @@
 				"DOF 2017/18": DOF5_2017_18,
 				"DOF 2019/20": DOF5_2019_20,
 				"DOF 2021/22": DOF5_2021_22,
+				"DOF 2023/24": DOF5_2023_24,
 				"DOF LiDAR 2022/23": DOF5L_2022_23,
 				"DOF 500 GP 2022": DOF05_gp,
 				"DKP": DKP,
@@ -473,6 +523,7 @@
 				"STGO": hzi_stgoG,
 				"Kolodvori": HZIkolodvori,
 				"Stajališta": HZIstajalista,
+				"Nadzorna središta": hzi_NSG,
 				"Parenzana": parenzana_hrl
 			};
 			L.control.layers(baseMaps, overlayMaps).addTo(map);
