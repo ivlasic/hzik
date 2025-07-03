@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="hr">
 	<head>
 		<title>HŽI karta</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Pregledna karta HŽI" />
 		<meta name="keywords" content="HŽ, infrastruktura, karta" />
 		<meta name="author" content="Ivan Vlašić" />
@@ -284,7 +284,7 @@
 			var hzi_NSG = L.layerGroup();
 			for (i = 0; i < hzi_NS.length; i++) {
 				var a = hzi_NS[i];
-				var title = a[2] + ': ' + a[3];
+				var title = '<strong>' + a[2] + ': ' + a[3] + '</strong>';
 				var popup = '<p>Adresa: ' + a[4] + '<br /><a href="https://www.google.com/maps/search/?api=1&query=' + a[0] + ', ' + a[1] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
 				var marker = L.marker(new L.LatLng(a[0], a[1]), {
 					title: title,
