@@ -379,12 +379,14 @@
 			var mapOSMattribution = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>, ' +
 					'Imagery © <a href="https://geoportal.dgu.hr/">DGU</a>, ' +
 					'Podaci © <a href="https://www.hzinfra.hr/">HŽI</a>, ' +
-					'Izradio <a href="https://ivgeo.net/">ivgeo</a>',
+					'Izradio <a href="https://ivgeo.net/">ivgeo</a>, ' +
+					'Kod <a href="https://github.com/ivlasic/hzik">GitHub</a>',
 				mapOSMurl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 			var DGUattribution = 'Map data &copy; <a href="https://www.hzinfra.hr/">HŽI</a>, ' +
 					'Imagery © <a href="https://geoportal.dgu.hr/">DGU</a>, ' +
-					'Izradio <a href="https://ivgeo.net/">ivgeo</a>',
+					'Izradio <a href="https://ivgeo.net/">ivgeo</a>,' +
+					'Kod <a href="https://github.com/ivlasic/hzik">GitHub</a>',
 				mapOSMurl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 			var DOF5_2011 = L.tileLayer.wms("https://geoportal.dgu.hr/wms", {
@@ -499,6 +501,13 @@
 
 			var streets = L.tileLayer(mapOSMurl, {maxZoom: 19, attribution: mapOSMattribution});
 			var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: mapOSMattribution});
+			var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
+				minZoom: 0,
+				maxZoom: 20,
+				attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' + 'Izradio <a href="https://ivgeo.net/">ivgeo</a>, ' +
+							'Kod <a href="https://github.com/ivlasic/hzik">GitHub</a>',
+				ext: 'png'
+			});
 
 			var map = L.map('map', {
 				center: [44.8, 16.5],
@@ -558,6 +567,7 @@
 			var baseMaps = {
 				"Streets": streets,
 				"Topo": openTopoMap,
+				"Preglednije": Stadia_AlidadeSmooth,
 				"DOF 2011": DOF5_2011,
 				"DOF 2017/18": DOF5_2017_18,
 				"DOF 2019/20": DOF5_2019_20,
