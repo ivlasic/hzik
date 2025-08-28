@@ -453,7 +453,7 @@
 
 			/* HZIPOI */
 			function popProzorHZIkolodvori(feature, layer){
-				var popupContent = "<p>Kolodvor <strong>" + feature.properties.name + "</strong></p>";
+				var popupContent = '<p>Kolodvor <strong>' + feature.properties.name + '</strong></p><p><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
 				
 				if (feature.properties && feature.properties.popupContent) {
 					popupContent += feature.properties.popupContent;
@@ -480,7 +480,7 @@
 			});
 
 			function popProzorHZIstajalista(feature, layer){
-					var popupContent = "<p>Stajalište <strong>" + feature.properties.name + "</strong></p>";
+					var popupContent ='<p>Stajalište <strong>' + feature.properties.name + '</strong></p><p><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></p>';
 					
 					if (feature.properties && feature.properties.popupContent) {
 						popupContent += feature.properties.popupContent;
