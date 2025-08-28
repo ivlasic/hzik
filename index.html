@@ -93,6 +93,7 @@
 				trainIcon = new LeafIcon({iconUrl: 'img/train-svgrepo-com.svg'});
 				rullerIcon = new LeafIcon({iconUrl: 'img/ruler-svgrepo-com.svg'});
 				cancelIcon = new LeafIcon({iconUrl: 'img/cancel-svgrepo-com.svg'});
+				goalIcon = new LeafIcon({iconUrl: 'img/goal-svgrepo-com.svg'});
 /*
 			var koprivnica = L.marker([46.17507, 16.81610], {icon: redIcon}).bindPopup('Deponija Koprivnica, KC');
 				drnje    = L.marker([46.21554, 16.89859], {icon: blueIcon}).bindPopup('Deponija Drnje, KC');
@@ -220,7 +221,21 @@
 				[43.5217308614885,16.4529542160356, 'Ispostava LJO', 'Split predgrađe', 'Hercegovačka 13, 21000 Split Predgrađe', 'https://geoportal.dgu.hr/#/?lat=43.5217308614885&lng=16.4529542160356&zoom=11&layerconfig=988&mode=2d', rullerIcon],
 				[43.6750788027398,16.116988442877, 'Ispostava LJO', 'Perković', 'Nova I, Sitno Donje 28, 22000 Perković', 'https://geoportal.dgu.hr/#/?lat=43.6750788027398&lng=16.116988442877&zoom=11&layerconfig=988&mode=2d', rullerIcon],
 				[44.0348848422282,16.1973507718517, 'Ispostava LJO', 'Knin', 'Ulica kralja Zvonimira 3, 22300 Knin', 'https://geoportal.dgu.hr/#/?lat=44.0348848422282&lng=16.1973507718517&zoom=11&layerconfig=988&mode=2d', rullerIcon],
-				[43.5484824443394,16.4302405528745, 'Ispostava LJO', 'Kaštel sućurac', 'Put Glavice 20, 21212 Kaštel Sućurac', 'https://geoportal.dgu.hr/#/?lat=43.5484824443394&lng=16.4302405528745&zoom=11&layerconfig=988&mode=2d', rullerIcon]
+				[43.5484824443394,16.4302405528745, 'Ispostava LJO', 'Kaštel sućurac', 'Put Glavice 20, 21212 Kaštel Sućurac', 'https://geoportal.dgu.hr/#/?lat=43.5484824443394&lng=16.4302405528745&zoom=11&layerconfig=988&mode=2d', rullerIcon],
+				[44.3112570967782,15.7992464303970, 'Granica NS Split-NS Ogulin', 'NG Knin-NG Perušić', 'M604 km 157+100', 'https://geoportal.dgu.hr/#/?lat=44.31125709677817&lng=15.799246430397035&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.4262379575839,15.0073537230491, 'Granica NS Rijeka-NS Ogulin', 'NG Delnice-NG Ogulin', 'M202 km 564+000', 'https://geoportal.dgu.hr/#/?lat=45.4262379575839&lng=15.0073537230491&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.3988247662709,15.4334051907062, 'Granica NS Ogulin-NS Zagreb', 'NG Ogulin-NG Karlovac', 'M202 km 497+500', 'https://geoportal.dgu.hr/#/?lat=45.3988247662709&lng=15.4334051907062&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[46.0389970744980,15.9897637367248, 'Granica NS Zagreb-NS Varaždin', 'NG Zabok-NG Varaždin', 'R201 km 31+900', 'https://geoportal.dgu.hr/#/?lat=46.0389970744980&lng=15.9897637367248&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.8018720149873,16.2417599558830, 'Granica NS Zagreb-NS Koprivnica', 'NG Dugo Selo-NG Križevci', 'M201 km 445+700', 'https://geoportal.dgu.hr/#/?lat=45.8018720149873&lng=16.2417599558830&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.5917853300185,17.2267717123031, 'Granica NS Zagreb-NS Koprivnica', 'NG Novska-NG Virovitica', 'L204 km 53+750', 'https://geoportal.dgu.hr/#/?lat=45.59178533001855&lng=17.226771712303165&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.3234589871001,16.9906273484230, 'Granica NS Zagreb-NS Slavonski Brod', 'NG Novska-NG Nova Gradiška', 'M104 km 305+860', 'https://geoportal.dgu.hr/#/?lat=45.323458987100125&lng=16.990627348423008&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.7800724340611,17.5311756134033, 'Granica NS Koprivnica-NS Osijek', 'NG Virovitica-NG Našice', 'R202 km 131+400', 'https://geoportal.dgu.hr/#/?lat=45.78007243406117&lng=17.531175613403324&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[46.2536954578846,16.6211020946502, 'Granica NS Varaždin-NS Koprivnica', 'NG Čakovec-NG Koprivnica', 'R202 km 226+800', 'https://geoportal.dgu.hr/#/?lat=46.25369545788469&lng=16.621102094650272&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.3518436585358,17.9944467544555, 'Granica NS Slavonski Brod-NS Osijek', 'NG Nova Kapela-NG Našice', 'L205 km 23+500', 'https://geoportal.dgu.hr/#/?lat=45.35184365853582&lng=17.99444675445557&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.5066514235205,18.5706067085266, 'Granica NS Vinkovci-NS Osijek', 'NG Đakovo-NG Osijek', 'M302 km 11+000', 'https://geoportal.dgu.hr/#/?lat=45.50665142352056&lng=18.570606708526615&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.3055271758224,18.8122120499610, 'Granica NS Vinkovci-NS Osijek', 'NG Vinkovci-NG Osijek', 'L208 km 1+051', 'https://geoportal.dgu.hr/#/?lat=45.30552717582247&lng=18.812212049961094&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.5000906682064,18.9625525474548, 'Granica NS Vinkovci-NS Osijek', 'NG Vukovar-NG Osijek', 'R202 km 0+358', 'https://geoportal.dgu.hr/#/?lat=45.50009066820647&lng=18.962552547454834&zoom=11&layerconfig=988&mode=2d', goalIcon],
+				[45.2251595841875,18.4052538871765, 'Granica NS Slavonski Brod-NS Vinkovci', 'NG Slavonski Brod-NG Đakovo', 'M104 km 188+500', 'https://geoportal.dgu.hr/#/?lat=45.225159584187544&lng=18.405253887176517&zoom=11&layerconfig=988&mode=2d', goalIcon]
 			]
 
 			//var deponije = L.layerGroup([koprivnica, drnje, botovo, keter, keter2, keter3, privremeno]);
