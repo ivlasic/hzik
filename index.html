@@ -363,7 +363,22 @@
 
 			var hzi_stgo = L.geoJSON(hzi_stgo, {
 				onEachFeature: function(feature, layer){
-					var popupContent = '<p>Br.t.: <strong>' + feature.properties.TOCKA + '</strong></p><ul><li>Stacionaža: ' + feature.properties.STACIONAZA + '</li><li>Udaljenost od osi: ' + feature.properties.UDALJENOST_OD_OSI + '</li><li>Stabilizacija: ' + feature.properties.STABILIZACIJA + '</li><li>HTRS96/TM E,N: ' + feature.properties.EHTRS96TM + ',' + feature.properties.NHTRS96TM + ',' + feature.properties.H + '</li></ul><ul><li><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></li></ul>';
+
+					var stacionaza = feature.properties.STACIONAZA;
+					if (typeof stacionaza !== "undefined" && stacionaza !== null && stacionaza !== '') {
+						var stacionaza = '<li>Stacionaža: ' + stacionaza + '</li>';
+					} else {
+						var stacionaza = '';
+					}
+
+					var udaljenost_od_osi = feature.properties.UDALJENOST_OD_OSI;
+					if (typeof udaljenost_od_osi !== "undefined" && udaljenost_od_osi !== null && udaljenost_od_osi !== '') {
+						var udaljenost_od_osi = '<li>Udaljenost od osi: ' + udaljenost_od_osi + '</li>';
+					} else {
+						var udaljenost_od_osi = '';
+					}
+
+					var popupContent = '<p>Br.t.: <strong>' + feature.properties.TOCKA + '</strong></p><ul>' + stacionaza + udaljenost_od_osi + '<li>Stabilizacija: ' + feature.properties.STABILIZACIJA + '</li><li>HTRS96/TM E,N: ' + feature.properties.EHTRS96TM + ',' + feature.properties.NHTRS96TM + ',' + feature.properties.H + '</li></ul><ul><li><a href="https://www.google.com/maps/search/?api=1&query=' + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + '" target="_blank" rel="noopener noreferrer">Otvori u Google kartama</a></li></ul>';
 					
 					if (feature.properties && feature.properties.popupContent) {
 						popupContent += feature.properties.popupContent;
@@ -409,30 +424,35 @@
 				layers: 'DOF',
 				format: 'image/png',
 				transparent: true,
+				maxZoom: 20,
 				attribution: DGUattribution
 			});
 			var DOF5_2017_18 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2017_2018/wms", {
 				layers: 'OI.OrthoimageCoverage',
 				format: 'image/png',
 				transparent: true,
+				maxZoom: 20,
 				attribution: DGUattribution
 			});
 			var DOF5_2019_20 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2019_2020/wms", {
 				layers: 'OI.OrthoimageCoverage',
 				format: 'image/png',
 				transparent: true,
+				maxZoom: 20,
 				attribution: DGUattribution
 			});
 			var DOF5_2021_22 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2021_2022/wms", {
 				layers: 'OI.OrthoimageCoverage',
 				format: 'image/png',
 				transparent: true,
+				maxZoom: 20,
 				attribution: DGUattribution
 			});
 			var DOF5_2023_24 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_2023_2024/wms", {
 				layers: 'OI.OrthoimageCoverage',
 				format: 'image/png',
 				transparent: true,
+				maxZoom: 20,
 				attribution: DGUattribution
 			});
 			var DOF5L_2022_23 = L.tileLayer.wms("https://geoportal.dgu.hr/services/inspire/orthophoto_lidar_2022_2023/wms", {
