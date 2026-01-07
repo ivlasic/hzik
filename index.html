@@ -537,10 +537,10 @@
 
 			var streets = L.tileLayer(mapOSMurl, {maxZoom: 19, attribution: mapOSMattribution});
 			var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: mapOSMattribution});
-			var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
+			var Stadia_AlidadeSmooth = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 				minZoom: 0,
 				maxZoom: 20,
-				attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' + 'Izradio <a href="https://ivgeo.net/">ivgeo</a>, ' +
+				attribution: '&copy; <a href="https://cartocdn.com" target="_blank">CARTO</a> &copy; <a href="https://www.maptiler.com/">MAPTILER</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, ' + 'Izradio <a href="https://ivgeo.net/">ivgeo</a>, ' +
 							'Kod <a href="https://github.com/ivlasic/hzik">GitHub</a>',
 				ext: 'png'
 			});
