@@ -8,7 +8,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 221.808,
         "STABILIZACIJA": "BOLCNA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.166
+        "UDALJENOST_OD_OSI": -3.166
       },
       "geometry": {
         "type": "Point",
@@ -28,7 +28,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 221.94,
         "STABILIZACIJA": "GRADSKI POLIGON",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 4.039
+        "UDALJENOST_OD_OSI": -4.039
       },
       "geometry": {
         "type": "Point",
@@ -168,7 +168,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 226.352,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.466
+        "UDALJENOST_OD_OSI": -2.466
       },
       "geometry": {
         "type": "Point",
@@ -188,7 +188,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 227.611,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.771
+        "UDALJENOST_OD_OSI": -2.771
       },
       "geometry": {
         "type": "Point",
@@ -208,7 +208,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 227.049,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.287
+        "UDALJENOST_OD_OSI": -3.287
       },
       "geometry": {
         "type": "Point",
@@ -228,7 +228,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 228.956,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 5.788
+        "UDALJENOST_OD_OSI": -5.788
       },
       "geometry": {
         "type": "Point",
@@ -248,7 +248,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 227.107,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.298
+        "UDALJENOST_OD_OSI": -2.298
       },
       "geometry": {
         "type": "Point",
@@ -268,7 +268,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 226.147,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.75
+        "UDALJENOST_OD_OSI": -3.75
       },
       "geometry": {
         "type": "Point",
@@ -308,7 +308,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 224.561,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.011
+        "UDALJENOST_OD_OSI": -3.011
       },
       "geometry": {
         "type": "Point",
@@ -388,7 +388,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 221.212,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.223
+        "UDALJENOST_OD_OSI": -2.223
       },
       "geometry": {
         "type": "Point",
@@ -408,7 +408,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 220.974,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.371
+        "UDALJENOST_OD_OSI": -2.371
       },
       "geometry": {
         "type": "Point",
@@ -428,7 +428,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 220.515,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.888
+        "UDALJENOST_OD_OSI": -2.888
       },
       "geometry": {
         "type": "Point",
@@ -448,7 +448,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 219.5,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.334
+        "UDALJENOST_OD_OSI": -3.334
       },
       "geometry": {
         "type": "Point",
@@ -608,7 +608,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 221.256,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.797
+        "UDALJENOST_OD_OSI": -2.797
       },
       "geometry": {
         "type": "Point",
@@ -628,7 +628,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 221.515,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.846
+        "UDALJENOST_OD_OSI": -2.846
       },
       "geometry": {
         "type": "Point",
@@ -648,7 +648,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 222.671,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.512
+        "UDALJENOST_OD_OSI": -3.512
       },
       "geometry": {
         "type": "Point",
@@ -668,7 +668,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 223.491,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.01
+        "UDALJENOST_OD_OSI": -3.01
       },
       "geometry": {
         "type": "Point",
@@ -688,7 +688,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 224.215,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.761
+        "UDALJENOST_OD_OSI": -2.761
       },
       "geometry": {
         "type": "Point",
@@ -768,7 +768,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 228.303,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.379
+        "UDALJENOST_OD_OSI": -2.379
       },
       "geometry": {
         "type": "Point",
@@ -788,7 +788,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 228.415,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.991
+        "UDALJENOST_OD_OSI": -2.991
       },
       "geometry": {
         "type": "Point",
@@ -808,7 +808,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 230.251,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.489
+        "UDALJENOST_OD_OSI": -2.489
       },
       "geometry": {
         "type": "Point",
@@ -848,7 +848,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 232.289,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.532
+        "UDALJENOST_OD_OSI": -2.532
       },
       "geometry": {
         "type": "Point",
@@ -888,7 +888,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 236.246,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.648
+        "UDALJENOST_OD_OSI": -2.648
       },
       "geometry": {
         "type": "Point",
@@ -928,7 +928,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 239.889,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.951
+        "UDALJENOST_OD_OSI": -2.951
       },
       "geometry": {
         "type": "Point",
@@ -968,7 +968,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 242.593,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.46
+        "UDALJENOST_OD_OSI": -2.46
       },
       "geometry": {
         "type": "Point",
@@ -1008,7 +1008,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 243.966,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.19
+        "UDALJENOST_OD_OSI": -3.19
       },
       "geometry": {
         "type": "Point",
@@ -1028,7 +1028,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 245.569,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.241
+        "UDALJENOST_OD_OSI": -2.241
       },
       "geometry": {
         "type": "Point",
@@ -1048,7 +1048,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 245.845,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.439
+        "UDALJENOST_OD_OSI": -2.439
       },
       "geometry": {
         "type": "Point",
@@ -1088,7 +1088,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 248.449,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.393
+        "UDALJENOST_OD_OSI": -2.393
       },
       "geometry": {
         "type": "Point",
@@ -1108,7 +1108,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 248.603,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.958
+        "UDALJENOST_OD_OSI": -2.958
       },
       "geometry": {
         "type": "Point",
@@ -1148,7 +1148,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 250.85,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.643
+        "UDALJENOST_OD_OSI": -2.643
       },
       "geometry": {
         "type": "Point",
@@ -1168,7 +1168,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 251.725,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.944
+        "UDALJENOST_OD_OSI": -3.944
       },
       "geometry": {
         "type": "Point",
@@ -1208,7 +1208,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 254.443,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 4.746
+        "UDALJENOST_OD_OSI": -4.746
       },
       "geometry": {
         "type": "Point",
@@ -1228,7 +1228,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 255.426,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.423
+        "UDALJENOST_OD_OSI": -2.423
       },
       "geometry": {
         "type": "Point",
@@ -1288,7 +1288,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 258.405,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.476
+        "UDALJENOST_OD_OSI": -2.476
       },
       "geometry": {
         "type": "Point",
@@ -1308,7 +1308,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 258.937,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.489
+        "UDALJENOST_OD_OSI": -2.489
       },
       "geometry": {
         "type": "Point",
@@ -1328,7 +1328,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 259.597,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.664
+        "UDALJENOST_OD_OSI": -2.664
       },
       "geometry": {
         "type": "Point",
@@ -1408,7 +1408,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 264.935,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.923
+        "UDALJENOST_OD_OSI": -2.923
       },
       "geometry": {
         "type": "Point",
@@ -1428,7 +1428,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 265.542,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.212
+        "UDALJENOST_OD_OSI": -3.212
       },
       "geometry": {
         "type": "Point",
@@ -1448,7 +1448,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 266.379,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.859
+        "UDALJENOST_OD_OSI": -2.859
       },
       "geometry": {
         "type": "Point",
@@ -1468,7 +1468,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 267.228,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 4.945
+        "UDALJENOST_OD_OSI": -4.945
       },
       "geometry": {
         "type": "Point",
@@ -1508,7 +1508,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 271.667,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.335
+        "UDALJENOST_OD_OSI": -3.335
       },
       "geometry": {
         "type": "Point",
@@ -1548,7 +1548,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 241.753,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.382
+        "UDALJENOST_OD_OSI": -2.382
       },
       "geometry": {
         "type": "Point",
@@ -1568,7 +1568,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 242.198,
         "STABILIZACIJA": "TIPLA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.366
+        "UDALJENOST_OD_OSI": -2.366
       },
       "geometry": {
         "type": "Point",
@@ -1588,7 +1588,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 242.025,
         "STABILIZACIJA": "BOLCNA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.38
+        "UDALJENOST_OD_OSI": -2.38
       },
       "geometry": {
         "type": "Point",
@@ -1608,7 +1608,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 241.539,
         "STABILIZACIJA": "BOLCNA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.392
+        "UDALJENOST_OD_OSI": -3.392
       },
       "geometry": {
         "type": "Point",
@@ -1628,7 +1628,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 239.979,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.736
+        "UDALJENOST_OD_OSI": -3.736
       },
       "geometry": {
         "type": "Point",
@@ -1648,7 +1648,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 238.402,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.99
+        "UDALJENOST_OD_OSI": -3.99
       },
       "geometry": {
         "type": "Point",
@@ -1668,7 +1668,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 237.911,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 4.484
+        "UDALJENOST_OD_OSI": -4.484
       },
       "geometry": {
         "type": "Point",
@@ -1748,7 +1748,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 238.994,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 5.791
+        "UDALJENOST_OD_OSI": -5.791
       },
       "geometry": {
         "type": "Point",
@@ -1768,7 +1768,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 236.748,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.152
+        "UDALJENOST_OD_OSI": -3.152
       },
       "geometry": {
         "type": "Point",
@@ -1788,7 +1788,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 235.694,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.9
+        "UDALJENOST_OD_OSI": -3.9
       },
       "geometry": {
         "type": "Point",
@@ -1808,7 +1808,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 235.025,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 4.144
+        "UDALJENOST_OD_OSI": -4.144
       },
       "geometry": {
         "type": "Point",
@@ -1848,7 +1848,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 235.991,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.379
+        "UDALJENOST_OD_OSI": -3.379
       },
       "geometry": {
         "type": "Point",
@@ -1868,7 +1868,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 237.713,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.433
+        "UDALJENOST_OD_OSI": -3.433
       },
       "geometry": {
         "type": "Point",
@@ -2068,7 +2068,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 234.665,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.97
+        "UDALJENOST_OD_OSI": -2.97
       },
       "geometry": {
         "type": "Point",
@@ -2088,7 +2088,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 233.196,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.077
+        "UDALJENOST_OD_OSI": -3.077
       },
       "geometry": {
         "type": "Point",
@@ -2108,7 +2108,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 232.449,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.918
+        "UDALJENOST_OD_OSI": -2.918
       },
       "geometry": {
         "type": "Point",
@@ -2128,7 +2128,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 232.049,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 2.948
+        "UDALJENOST_OD_OSI": -2.948
       },
       "geometry": {
         "type": "Point",
@@ -2148,7 +2148,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 231.514,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.302
+        "UDALJENOST_OD_OSI": -3.302
       },
       "geometry": {
         "type": "Point",
@@ -2188,7 +2188,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 230.22,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.7
+        "UDALJENOST_OD_OSI": -3.7
       },
       "geometry": {
         "type": "Point",
@@ -2208,7 +2208,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 229.728,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.061
+        "UDALJENOST_OD_OSI": -3.061
       },
       "geometry": {
         "type": "Point",
@@ -2268,7 +2268,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 227.332,
         "STABILIZACIJA": "BOLCNA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 3.984
+        "UDALJENOST_OD_OSI": -3.984
       },
       "geometry": {
         "type": "Point",
@@ -2288,7 +2288,7 @@ var hzi_stgo = [{"type":"FeatureCollection","features":[{"type":"Feature","prope
         "H": 227.017,
         "STABILIZACIJA": "KAPA",
         "STRANA": "L",
-        "UDALJENOST_OD_OSI": 4.604
+        "UDALJENOST_OD_OSI": -4.604
       },
       "geometry": {
         "type": "Point",
