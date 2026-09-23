@@ -279,12 +279,28 @@
 					const pocetnaStacionaza = feature.properties.Poc_stac || 0; 
 					const oznakaPruge = feature.properties.OznakaPruge || "Nepoznata oznaka";
 					const nazivPruge = feature.properties.NazivPruge || "Nepoznata pruga";
+					const gradjevinskaDuljina = feature.properties.DuljPruge || 0;
 
 					// Spremamo originalnu boju iz stila kako bismo je znali vratiti na mouseout
 					const originalnaBoja = layer.options.color;
 
+					// Pomoćna funkcija za izračun i formatiranje stacionaže na temelju LatLng točke
+					function dohvatiFormatiranuStacionazu(polilinija, tockaMisa) {
+						const mapa = polilinija._map;
+						const najblizaTocka = L.GeometryUtil.closest(mapa, polilinija, tockaMisa);
+
+						if (najblizaTocka) {
+							const udaljenostOdPocetka = izracunajUdaljenostDoTocke(polilinija, najblizaTocka);
+							const trenutnaStacionazaMetri = pocetnaStacionaza + udaljenostOdPocetka;
+
+							const km = Math.floor(trenutnaStacionazaMetri / 1000);
+							const m = Math.round(trenutnaStacionazaMetri % 1000);
+							return `${km}+${m.toString().padStart(3, '0')}`;
+						}
+						return "Nepoznato";
+					}
+
 					// 2. Vezanje SAMO JEDNOG unificiranog tooltipa koji prati kursor (sticky)
-					// Inicijalno prikazuje naziv pruge dok miš miruje ili tek uđe na liniju
 					var inicijalniTekst = `<strong>Pruga ${oznakaPruge} ${nazivPruge}</strong>`;
 					layer.bindTooltip(inicijalniTekst, {
 						sticky: true,
@@ -294,31 +310,12 @@
 
 					// 3. Događaj micanja miša preko polilinije pruge - izračun stacionaže
 					layer.on('mousemove', function(e) {
-						const polilinija = e.target;
-						const mapa = polilinija._map;
-						const tockaMisa = e.latlng;
-
-						// Pronalazi najbližu točku na samoj liniji
-						const najblizaTocka = L.GeometryUtil.closest(mapa, polilinija, tockaMisa);
-
-						if (najblizaTocka) {
-							// Izračunaj stvarnu duljinu od početka ove dionice do mjesta miša
-							const udaljenostOdPocetka = izracunajUdaljenostDoTocke(polilinija, najblizaTocka);
-
-							// Ukupna stacionaža u metrima
-							const trenutnaStacionazaMetri = pocetnaStacionaza + udaljenostOdPocetka;
-
-							// Formatiranje u željeznički zapis KM+METRI (npr. 12+500)
-							const km = Math.floor(trenutnaStacionazaMetri / 1000);
-							const m = Math.round(trenutnaStacionazaMetri % 1000);
-							const formatiranoStacionaza = `${km}+${m.toString().padStart(3, '0')}`;
-
-							// Dinamički ažuriramo sadržaj JEDNOG TE ISTOG postojećeg tooltipa
-							polilinija.setTooltipContent(`
-								<strong>Pruga:</strong> ${oznakaPruge} ${nazivPruge}<br>
-								<strong>Stacionaža:</strong> KM ${formatiranoStacionaza}
-							`);
-						}
+						const formatiranoStacionaza = dohvatiFormatiranuStacionazu(e.target, e.latlng);
+						
+						e.target.setTooltipContent(`
+							<strong>Pruga:</strong> ${oznakaPruge} ${nazivPruge}<br>
+							<strong>Stacionaža:</strong> KM ${formatiranoStacionaza}
+						`);
 					});
 
 					// 4. Highlight pruge na mouseover
@@ -328,23 +325,38 @@
 						});
 					});
 
-					// 5. Vraćanje ORIGINALNE boje pruge na mouseout (ne mjenja u crno ako je pruga npr. napuštena)
+					// 5. Vraćanje ORIGINALNE boje pruge na mouseout
 					layer.on('mouseout', function () {
 						this.setStyle({
 							"color": originalnaBoja
 						});
-						// Opcionalno: vraća tooltip na osnovni tekst kada miš napusti liniju
 						this.setTooltipContent(`<strong>Pruga ${oznakaPruge} ${nazivPruge}</strong>`);
 					});
 
-					// 6. Postavljanje Popup-a na klik
-					var popupContent = "<p>Pruga <strong>" + oznakaPruge + " " + nazivPruge + "</strong></p><p>Građevinska duljina pruge " + (feature.properties.DuljPruge || 0) + " (km)</p>";
-					if (feature.properties && feature.properties.popupContent) {
-						popupContent += feature.properties.popupContent;
-					}
-					layer.bindPopup(popupContent);
+					// 6. Dinamičko postavljanje Popup-a na klik s trenutnom stacionažom
+					layer.bindPopup(function (clickedLayer) {
+						// e.latlng iz Leaflet popup eventa (funkcija prima layer, a kliknuta točka se nalazi u map eventu)
+						// Leaflet automatski sprema zadnju lokaciju klika na mapi u _map._popup._latlng
+						const mapa = clickedLayer._map;
+						const tockaKlika = mapa._popup ? mapa._popup.getLatLng() : clickedLayer.getBounds().getCenter();
+						
+						const stacionazaNaKlik = dohvatiFormatiranuStacionazu(clickedLayer, tockaKlika);
+
+						var popupContent = `
+							<p>Pruga <strong>${oznakaPruge} ${nazivPruge}</strong></p>
+							<p>Građevinska duljina pruge: ${gradjevinskaDuljina} (km)</p>
+							<p><strong>Kliknuta stacionaža: KM ${stacionazaNaKlik}</strong></p>
+						`;
+
+						if (feature.properties && feature.properties.popupContent) {
+							popupContent += feature.properties.popupContent;
+						}
+						
+						return popupContent;
+					});
 				}
 			});
+
 
 			var hzi_zcp = L.geoJSON(hzi_zcp, {
 				filter: function(feature, layer) {
