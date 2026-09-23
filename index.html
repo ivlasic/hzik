@@ -65,6 +65,7 @@
 		<script src="asset/parenzana_hr.geojson"></script><!-- paranzana -->
 		<script src="asset/hzi_poi.geojson"></script><!-- kolodvori i stajališta -->
 		<script src="asset/hzi_stgo.geojson"></script><!-- stalne točke geodetske osnove -->
+		<script src="plugins/leaflet.geometryutil.js"></script>
 	</head>
 	<body>
 		<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
@@ -265,34 +266,82 @@
 			var pruge = L.geoJson(pruga, {
 				style: function(feature) {
 					switch (feature.properties.type) {
-					case 'disused': return {color: "#ff0000"};
-					case 'abandoned': return {color: "#8D6F64"};
-					case 'proposed': return {color: "#5DE2E7"};
-					case 'rail': return pruga_style;
+						case 'disused': return {color: "#ff0000"};
+						case 'abandoned': return {color: "#8D6F64"};
+						case 'proposed': return {color: "#5DE2E7"};
+						case 'rail': return pruga_style;
+						default: return {color: "#000000"}; // Defaultna boja ako tip nije prepoznat
 					}
 				},
-				//style: pruga_style,
 				onEachFeature: function(feature, layer){
-					var popupContent = "<p>Pruga <strong>" + feature.properties.OznakaPruge + " " + feature.properties.NazivPruge + "</strong></p><p>Građevinska duljina pruge " + feature.properties.DuljPruge + " (km)</p>";
-					
+
+					// 1. Dohvaćanje početne stacionaže iz GeoJSON atributa
+					const pocetnaStacionaza = feature.properties.Poc_stac || 0; 
+					const oznakaPruge = feature.properties.OznakaPruge || "Nepoznata oznaka";
+					const nazivPruge = feature.properties.NazivPruge || "Nepoznata pruga";
+
+					// Spremamo originalnu boju iz stila kako bismo je znali vratiti na mouseout
+					const originalnaBoja = layer.options.color;
+
+					// 2. Vezanje SAMO JEDNOG unificiranog tooltipa koji prati kursor (sticky)
+					// Inicijalno prikazuje naziv pruge dok miš miruje ili tek uđe na liniju
+					var inicijalniTekst = `<strong>Pruga ${oznakaPruge} ${nazivPruge}</strong>`;
+					layer.bindTooltip(inicijalniTekst, {
+						sticky: true,
+						direction: 'top',
+						className: 'stacionaza-tooltip'
+					});
+
+					// 3. Događaj micanja miša preko polilinije pruge - izračun stacionaže
+					layer.on('mousemove', function(e) {
+						const polilinija = e.target;
+						const mapa = polilinija._map;
+						const tockaMisa = e.latlng;
+
+						// Pronalazi najbližu točku na samoj liniji
+						const najblizaTocka = L.GeometryUtil.closest(mapa, polilinija, tockaMisa);
+
+						if (najblizaTocka) {
+							// Izračunaj stvarnu duljinu od početka ove dionice do mjesta miša
+							const udaljenostOdPocetka = izracunajUdaljenostDoTocke(polilinija, najblizaTocka);
+
+							// Ukupna stacionaža u metrima
+							const trenutnaStacionazaMetri = pocetnaStacionaza + udaljenostOdPocetka;
+
+							// Formatiranje u željeznički zapis KM+METRI (npr. 12+500)
+							const km = Math.floor(trenutnaStacionazaMetri / 1000);
+							const m = Math.round(trenutnaStacionazaMetri % 1000);
+							const formatiranoStacionaza = `${km}+${m.toString().padStart(3, '0')}`;
+
+							// Dinamički ažuriramo sadržaj JEDNOG TE ISTOG postojećeg tooltipa
+							polilinija.setTooltipContent(`
+								<strong>Pruga:</strong> ${oznakaPruge} ${nazivPruge}<br>
+								<strong>Stacionaža:</strong> KM ${formatiranoStacionaza}
+							`);
+						}
+					});
+
+					// 4. Highlight pruge na mouseover
+					layer.on('mouseover', function () {
+						this.setStyle({
+							'color': '#ADD527'
+						});
+					});
+
+					// 5. Vraćanje ORIGINALNE boje pruge na mouseout (ne mjenja u crno ako je pruga npr. napuštena)
+					layer.on('mouseout', function () {
+						this.setStyle({
+							"color": originalnaBoja
+						});
+						// Opcionalno: vraća tooltip na osnovni tekst kada miš napusti liniju
+						this.setTooltipContent(`<strong>Pruga ${oznakaPruge} ${nazivPruge}</strong>`);
+					});
+
+					// 6. Postavljanje Popup-a na klik
+					var popupContent = "<p>Pruga <strong>" + oznakaPruge + " " + nazivPruge + "</strong></p><p>Građevinska duljina pruge " + (feature.properties.DuljPruge || 0) + " (km)</p>";
 					if (feature.properties && feature.properties.popupContent) {
 						popupContent += feature.properties.popupContent;
 					}
-
-					layer.on('mouseover', function () {
-						this.setStyle({
-						'color': '#ADD527'
-						});
-					});
-					layer.on('mouseout', function () {
-						this.setStyle({
-						"color": "#000"
-						});
-					});
-
-					var tooltipContent = '<strong>Pruga ' + feature.properties.OznakaPruge + ' ' + feature.properties.NazivPruge + '</strong>';
-    				layer.bindTooltip(tooltipContent);
-
 					layer.bindPopup(popupContent);
 				}
 			});
@@ -666,6 +715,38 @@
 				textPlaceholder: 'Traži...'
 			});
 			map.addControl(controlSearch);
+
+			/**
+			 * Računa udaljenost u metrima duž cijele polilinije od prve točke do zadane ciljane točke.
+			 */
+			function izracunajUdaljenostDoTocke(polyline, targetLatLng) {
+				// 1. Osiguravamo ravan niz koordinata (rješava problem MultiPolyline ugniježđenih nizova)
+				const coords = polyline.getLatLngs().flat(Infinity);
+				let ukupnaUdaljenost = 0;
+				
+				// 2. Pronalazimo točnu točku na samoj liniji koja je najbliža kliku korisnika
+				// Ova funkcija rješava problem "promašaja" za nekoliko piksela
+				const closestPoint = L.GeometryUtil.closest(polyline._map, polyline, targetLatLng);
+				
+				if (!closestPoint) return 0;
+
+				// 3. Iteriramo kroz segmente i računamo udaljenost do te projektirane točke
+				for (let i = 0; i < coords.length - 1; i++) {
+					const p1 = coords[i];
+					const p2 = coords[i+1];
+					
+					// Koristimo toleranciju (npr. 0.1 metar ili ugrađeni belongsSegment) 
+					// jer closestPoint sada sigurno leži na nekom od segmenata
+					if (L.GeometryUtil.belongsSegment(closestPoint, p1, p2, 0.00001)) {
+						ukupnaUdaljenost += p1.distanceTo(closestPoint);
+						break; // Stigli smo do točke projekcije, prekidamo izračun
+					} else {
+						ukupnaUdaljenost += p1.distanceTo(p2);
+					}
+				}
+				
+				return ukupnaUdaljenost; // Vraća stacionažu u metrima
+			}
 
 		</script>
 	  </body>
