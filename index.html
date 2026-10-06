@@ -615,12 +615,11 @@
    				 }
 			});
 			var openTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: mapOSMattribution});
-			var Stadia_AlidadeSmooth = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			var prazno = L.tileLayer( {
 				minZoom: 0,
 				maxZoom: 20,
-				attribution: '&copy; <a href="https://cartocdn.com" target="_blank">CARTO</a> &copy; <a href="https://www.maptiler.com/">MAPTILER</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, ' + 'Izradio <a href="https://ivgeo.net/">ivgeo</a>, ' +
-							'Kod <a href="https://github.com/ivlasic/hzik">GitHub</a>',
-				ext: 'png'
+				attribution: '&copy; Izradio <a href="https://ivgeo.net/">ivgeo</a>, ' +
+							'Kod <a href="https://github.com/ivlasic/hzik">GitHub</a>'
 			});
 			var osmHumanitarian = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 				maxZoom: 19,
@@ -687,7 +686,7 @@
 				"Streets": streets,
 				"Topo": openTopoMap,
 				"OSM Humanitarian": osmHumanitarian,
-				"Preglednije": Stadia_AlidadeSmooth,
+				"Preglednije": prazno,
 				"DOF 2011": DOF5_2011,
 				"DOF 2017/18": DOF5_2017_18,
 				"DOF 2019/20": DOF5_2019_20,
